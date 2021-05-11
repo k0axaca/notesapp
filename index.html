@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<head>
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js"></script>
+    <title>Note Taker App</title>
+</head>
+<body>
+    <div class="front-page">
+        <h2 class="header">Note Taker App</h2>
+            <textarea id="note" name="note-text" class="note-area"></textarea>
+            <br>
+            <button id="submit" onclick="saveNote()" class="submit">Save Note</button>
+        <div class="notes-link">
+            <a href="index2.html" >View Notes</a>
+        </div> 
+    </div>
+</body>
+
+<script>
+let newNote = document.getElementById('note');
+
+function saveNote() {
+    if (newNote.value == '') {
+        return alert('Enter a new note!');
+    }
+    const id = getNoteId();
+    let getNotes = getExistingNotes();
+    if(!getNotes){
+        getNotes = {};
+    }
+    getNotes[id] = newNote.value;
+    localStorage.setItem('notes', JSON.stringify(getNotes));
+    alert('Note Saved!');
+}
+
+
+</script>
+</html>
